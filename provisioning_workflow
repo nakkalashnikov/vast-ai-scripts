@@ -1,5 +1,5 @@
 {
-  "id": "provisioning-flux-wan-combined",
+  "id": "provisioning-flux-wan-fixed-paths",
   "nodes": [
     {
       "id": 1,
@@ -54,12 +54,12 @@
     {
       "id": 10,
       "type": "UNETLoader",
-      "title": "WAN 2.2 I2V Model Setup",
+      "title": "WAN 2.2 Image-to-Video (I2V)",
       "properties": {
         "models": [
           {
             "name": "wan2.2_i2v_480p_14B_fp8_scaled.safetensors",
-            "url": "https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/diffusion_models/wan2.2_i2v_480p_14B_fp8_scaled.safetensors",
+            "url": "https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/diffusion_models/diffusion_models/wan2.2_i2v_480p_14B_fp8_scaled.safetensors",
             "directory": "unet"
           }
         ]
@@ -69,7 +69,7 @@
     {
       "id": 11,
       "type": "UNETLoader",
-      "title": "WAN 2.2 T2V High-Noise Setup",
+      "title": "WAN 2.2 Text-to-Video (T2V) High-Noise",
       "properties": {
         "models": [
           {
