@@ -1,0 +1,260 @@
+{
+  "id": "00000000-0000-0000-0000-000000000000",
+  "revision": 0,
+  "last_node_id": 104,
+  "last_link_id": 32,
+  "nodes": [
+    {
+      "id": 90,
+      "type": "CLIPLoader",
+      "pos": [100, 130],
+      "size": [270, 106],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [{ "name": "CLIP", "type": "CLIP", "links": [17, 31] }],
+      "properties": {
+        "Node name for S&R": "CLIPLoader",
+        "models": [
+          {
+            "name": "umt5_xxl_fp8_e4m3fn_scaled.safetensors",
+            "url": "https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/text_encoders/umt5_xxl_fp8_e4m3fn_scaled.safetensors",
+            "directory": "clip"
+          }
+        ]
+      },
+      "widgets_values": ["umt5_xxl_fp8_e4m3fn_scaled.safetensors", "wan", "default"]
+    },
+    {
+      "id": 92,
+      "type": "VAELoader",
+      "pos": [100, 366],
+      "size": [270, 58],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [{ "name": "VAE", "type": "VAE", "links": [29] }],
+      "properties": {
+        "Node name for S&R": "VAELoader",
+        "models": [
+          {
+            "name": "wan_2.1_vae.safetensors",
+            "url": "https://huggingface.co/Comfy-Org/Wan_2.1_ComfyUI_repackaged/resolve/main/split_files/vae/wan_2.1_vae.safetensors",
+            "directory": "vae"
+          }
+        ]
+      },
+      "widgets_values": ["wan_2.1_vae.safetensors"]
+    },
+    {
+      "id": 101,
+      "type": "UNETLoader",
+      "pos": [100, 554],
+      "size": [270, 82],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [{ "name": "MODEL", "type": "MODEL", "links": [18] }],
+      "title": "High-Noise Model",
+      "properties": {
+        "Node name for S&R": "UNETLoader",
+        "models": [
+          {
+            "name": "wan2.2_t2v_high_noise_14B_fp8_scaled.safetensors",
+            "url": "https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/diffusion_models/wan2.2_t2v_high_noise_14B_fp8_scaled.safetensors",
+            "directory": "unet"
+          }
+        ]
+      },
+      "widgets_values": ["wan2.2_t2v_high_noise_14B_fp8_scaled.safetensors", "default"]
+    },
+    {
+      "id": 102,
+      "type": "UNETLoader",
+      "pos": [100, 766],
+      "size": [270, 82],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [{ "name": "MODEL", "type": "MODEL", "links": [19] }],
+      "title": "Low-Noise Model",
+      "properties": {
+        "Node name for S&R": "UNETLoader",
+        "models": [
+          {
+            "name": "wan2.2_t2v_low_noise_14B_fp8_scaled.safetensors",
+            "url": "https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/diffusion_models/wan2.2_t2v_low_noise_14B_fp8_scaled.safetensors",
+            "directory": "unet"
+          }
+        ]
+      },
+      "widgets_values": ["wan2.2_t2v_low_noise_14B_fp8_scaled.safetensors", "default"]
+    },
+    {
+      "id": 91,
+      "type": "CLIPTextEncode",
+      "pos": [509.61, 130],
+      "size": [400, 200],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [{ "name": "clip", "type": "CLIP", "link": 17 }],
+      "outputs": [{ "name": "CONDITIONING", "type": "CONDITIONING", "links": [22, 26] }],
+      "title": "Negative Prompt",
+      "properties": { "Node name for S&R": "CLIPTextEncode" },
+      "widgets_values": ["色调艳丽...最差质量..."]
+    },
+    {
+      "id": 93,
+      "type": "ModelSamplingSD3",
+      "pos": [509.61, 790],
+      "size": [270, 58],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [{ "name": "model", "type": "MODEL", "link": 18 }],
+      "outputs": [{ "name": "MODEL", "type": "MODEL", "links": [24] }],
+      "properties": { "Node name for S&R": "ModelSamplingSD3" },
+      "widgets_values": [8]
+    },
+    {
+      "id": 94,
+      "type": "ModelSamplingSD3",
+      "pos": [509.61, 978],
+      "size": [270, 58],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [{ "name": "model", "type": "MODEL", "link": 19 }],
+      "outputs": [{ "name": "MODEL", "type": "MODEL", "links": [20] }],
+      "properties": { "Node name for S&R": "ModelSamplingSD3" },
+      "widgets_values": [8]
+    },
+    {
+      "id": 95,
+      "type": "KSamplerAdvanced",
+      "pos": [1421.97, 130],
+      "size": [312.35, 334],
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [
+        { "name": "model", "type": "MODEL", "link": 20 },
+        { "name": "positive", "type": "CONDITIONING", "link": 21 },
+        { "name": "negative", "type": "CONDITIONING", "link": 22 },
+        { "name": "latent_image", "type": "LATENT", "link": 23 }
+      ],
+      "outputs": [{ "name": "LATENT", "type": "LATENT", "links": [28] }],
+      "title": "KSampler Low-Noise",
+      "properties": { "Node name for S&R": "KSamplerAdvanced" },
+      "widgets_values": ["disable", 0, "randomize", 20, 3.5, "euler", "simple", 10, 10000, "disable"]
+    },
+    {
+      "id": 96,
+      "type": "KSamplerAdvanced",
+      "pos": [1009.61, 130],
+      "size": [312.35, 334],
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        { "name": "model", "type": "MODEL", "link": 24 },
+        { "name": "positive", "type": "CONDITIONING", "link": 25 },
+        { "name": "negative", "type": "CONDITIONING", "link": 26 },
+        { "name": "latent_image", "type": "LATENT", "link": 27 }
+      ],
+      "outputs": [{ "name": "LATENT", "type": "LATENT", "links": [23] }],
+      "title": "KSampler High-Noise",
+      "properties": { "Node name for S&R": "KSamplerAdvanced" },
+      "widgets_values": ["enable", null, "randomize", 20, 3.5, "euler", "simple", 0, 10, "enable"]
+    },
+    {
+      "id": 97,
+      "type": "VAEDecode",
+      "pos": [1834.32, 130],
+      "size": [140, 46],
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "inputs": [
+        { "name": "samples", "type": "LATENT", "link": 28 },
+        { "name": "vae", "type": "VAE", "link": 29 }
+      ],
+      "outputs": [{ "name": "IMAGE", "type": "IMAGE", "links": [32] }],
+      "properties": { "Node name for S&R": "VAEDecode" }
+    },
+    {
+      "id": 100,
+      "type": "CreateVideo",
+      "pos": [2074.32, 130],
+      "size": [270, 78],
+      "flags": {},
+      "order": 12,
+      "mode": 0,
+      "inputs": [{ "name": "images", "type": "IMAGE", "link": 32 }, { "name": "audio", "type": "AUDIO", "link": null }],
+      "outputs": [{ "name": "VIDEO", "type": "VIDEO", "links": [30] }],
+      "properties": { "Node name for S&R": "CreateVideo" },
+      "widgets_values": [16]
+    },
+    {
+      "id": 98,
+      "type": "SaveVideo",
+      "pos": [2444.32, 130],
+      "size": [270, 106],
+      "flags": {},
+      "order": 13,
+      "mode": 0,
+      "inputs": [{ "name": "video", "type": "VIDEO", "link": 30 }],
+      "outputs": [],
+      "properties": {},
+      "widgets_values": ["video/ComfyUI", "auto", "auto"]
+    },
+    {
+      "id": 99,
+      "type": "CLIPTextEncode",
+      "pos": [509.61, 460],
+      "size": [400, 200],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [{ "name": "clip", "type": "CLIP", "link": 31 }],
+      "outputs": [{ "name": "CONDITIONING", "type": "CONDITIONING", "links": [21, 25] }],
+      "title": "Positive Prompt",
+      "properties": { "Node name for S&R": "CLIPTextEncode" },
+      "widgets_values": [""]
+    },
+    {
+      "id": 104,
+      "type": "EmptyHunyuanLatentVideo",
+      "pos": [100, 978],
+      "size": [309.61, 130],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [{ "name": "LATENT", "type": "LATENT", "links": [27] }],
+      "title": "Empty Latent Video",
+      "properties": { "Node name for S&R": "EmptyHunyuanLatentVideo" },
+      "widgets_values": [640, 640, 81, 1]
+    }
+  ],
+  "links": [
+    [17, 90, 0, 91, 0, "CLIP"], [18, 101, 0, 93, 0, "MODEL"], [19, 102, 0, 94, 0, "MODEL"],
+    [20, 94, 0, 95, 0, "MODEL"], [21, 99, 0, 95, 1, "CONDITIONING"], [22, 91, 0, 95, 2, "CONDITIONING"],
+    [23, 96, 0, 95, 3, "LATENT"], [24, 93, 0, 96, 0, "MODEL"], [25, 99, 0, 96, 1, "CONDITIONING"],
+    [26, 91, 0, 96, 2, "CONDITIONING"], [27, 104, 0, 96, 3, "LATENT"], [28, 95, 0, 97, 0, "LATENT"],
+    [29, 92, 0, 97, 1, "VAE"], [30, 100, 0, 98, 0, "VIDEO"], [31, 90, 0, 99, 0, "CLIP"],
+    [32, 97, 0, 100, 0, "IMAGE"]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ds": { "scale": 1, "offset": [0, 0] },
+    "frontendVersion": "1.41.21"
+  },
+  "version": 0.4
+}
