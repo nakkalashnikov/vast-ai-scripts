@@ -1,10 +1,23 @@
 version: 1
 
+download_models:
+  # --- FLUX (Photo) ---
+  - url: "https://huggingface.co/Kijai/flux-fp8/resolve/main/flux1-dev-fp8.safetensors"
+    dest: "unet"
+  - url: "https://huggingface.co/black-forest-labs/FLUX.1-schnell/resolve/main/ae.safetensors"
+    dest: "vae"
+  - url: "https://huggingface.co/comfyanonymous/flux_text_encoders/resolve/main/t5xxl_fp8_e4m3fn.safetensors"
+    dest: "clip"
+
+  # --- WAN 2.2 (Photo-to-Video) ---
+  - url: "https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/diffusion_models/wan2.2_i2v_480p_14B_fp8_scaled.safetensors"
+    dest: "unet"
+  - url: "https://huggingface.co/Comfy-Org/Wan_2.1_ComfyUI_repackaged/resolve/main/split_files/vae/wan_2.1_vae.safetensors"
+    dest: "vae"
+  - url: "https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/text_encoders/umt5_xxl_fp8_e4m3fn_scaled.safetensors"
+    dest: "clip"
+
 extensions:
   - module: provisioner_comfyui
     config:
       comfyui_dir: "/workspace/ComfyUI"
-      # Тут ти можеш вказати список воркфлоу через дефіс
-      workflows:
-        - "https://raw.githubusercontent.com/nakkalashnikov/vast-ai-scripts/refs/heads/main/flux_photo_workflow.json"
-        - "https://raw.githubusercontent.com/nakkalashnikov/vast-ai-scripts/refs/heads/main/wan2.2_video_workflow.json"
