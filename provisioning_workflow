@@ -1,5 +1,5 @@
 {
-  "id": "provisioning-flux-wan2.2-complete",
+  "id": "provisioning-flux-wan-v2.2-final",
   "nodes": [
     {
       "id": 1,
@@ -22,16 +22,8 @@
       "title": "FLUX CLIP Setup",
       "properties": {
         "models": [
-          {
-            "name": "t5xxl_fp8_e4m3fn.safetensors",
-            "url": "https://huggingface.co/comfyanonymous/flux_text_encoders/resolve/main/t5xxl_fp8_e4m3fn.safetensors",
-            "directory": "clip"
-          },
-          {
-            "name": "clip_l.safetensors",
-            "url": "https://huggingface.co/comfyanonymous/flux_text_encoders/resolve/main/clip_l.safetensors",
-            "directory": "clip"
-          }
+          { "name": "t5xxl_fp8_e4m3fn.safetensors", "url": "https://huggingface.co/comfyanonymous/flux_text_encoders/resolve/main/t5xxl_fp8_e4m3fn.safetensors", "directory": "clip" },
+          { "name": "clip_l.safetensors", "url": "https://huggingface.co/comfyanonymous/flux_text_encoders/resolve/main/clip_l.safetensors", "directory": "clip" }
         ]
       },
       "widgets_values": ["t5xxl_fp8_e4m3fn.safetensors", "clip_l.safetensors", "flux", "default"]
@@ -41,13 +33,7 @@
       "type": "VAELoader",
       "title": "FLUX VAE Setup",
       "properties": {
-        "models": [
-          {
-            "name": "ae.safetensors",
-            "url": "https://huggingface.co/black-forest-labs/FLUX.1-schnell/resolve/main/ae.safetensors",
-            "directory": "vae"
-          }
-        ]
+        "models": [{ "name": "ae.safetensors", "url": "https://huggingface.co/black-forest-labs/FLUX.1-schnell/resolve/main/ae.safetensors", "directory": "vae" }]
       },
       "widgets_values": ["ae.safetensors"]
     },
@@ -56,13 +42,11 @@
       "type": "UNETLoader",
       "title": "WAN 2.2 High-Noise (I2V)",
       "properties": {
-        "models": [
-          {
-            "name": "wan2.2_i2v_high_noise_14B_fp8_scaled.safetensors",
-            "url": "https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/diffusion_models/wan2.2_i2v_high_noise_14B_fp8_scaled.safetensors",
-            "directory": "unet"
-          }
-        ]
+        "models": [{
+          "name": "wan2.2_i2v_high_noise_14B_fp8_scaled.safetensors",
+          "url": "https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/diffusion_models/wan2.2_i2v_high_noise_14B_fp8_scaled.safetensors",
+          "directory": "unet"
+        }]
       },
       "widgets_values": ["wan2.2_i2v_high_noise_14B_fp8_scaled.safetensors", "default"]
     },
@@ -71,13 +55,11 @@
       "type": "UNETLoader",
       "title": "WAN 2.2 Low-Noise (I2V)",
       "properties": {
-        "models": [
-          {
-            "name": "wan2.2_i2v_low_noise_14B_fp8_scaled.safetensors",
-            "url": "https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/diffusion_models/wan2.2_i2v_low_noise_14B_fp8_scaled.safetensors",
-            "directory": "unet"
-          }
-        ]
+        "models": [{
+          "name": "wan2.2_i2v_low_noise_14B_fp8_scaled.safetensors",
+          "url": "https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/diffusion_models/wan2.2_i2v_low_noise_14B_fp8_scaled.safetensors",
+          "directory": "unet"
+        }]
       },
       "widgets_values": ["wan2.2_i2v_low_noise_14B_fp8_scaled.safetensors", "default"]
     },
@@ -86,13 +68,11 @@
       "type": "CLIPLoader",
       "title": "WAN CLIP Setup",
       "properties": {
-        "models": [
-          {
-            "name": "umt5_xxl_fp8_e4m3fn_scaled.safetensors",
-            "url": "https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/text_encoders/umt5_xxl_fp8_e4m3fn_scaled.safetensors",
-            "directory": "clip"
-          }
-        ]
+        "models": [{
+          "name": "umt5_xxl_fp8_e4m3fn_scaled.safetensors",
+          "url": "https://huggingface.co/Comfy-Org/Wan_2.1_ComfyUI_repackaged/resolve/main/split_files/text_encoders/umt5_xxl_fp8_e4m3fn_scaled.safetensors",
+          "directory": "clip"
+        }]
       },
       "widgets_values": ["umt5_xxl_fp8_e4m3fn_scaled.safetensors", "wan", "default"]
     },
@@ -101,43 +81,37 @@
       "type": "VAELoader",
       "title": "WAN VAE Setup",
       "properties": {
-        "models": [
-          {
-            "name": "wan_2.1_vae.safetensors",
-            "url": "https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/vae/wan_2.1_vae.safetensors",
-            "directory": "vae"
-          }
-        ]
+        "models": [{
+          "name": "wan_2.1_vae.safetensors",
+          "url": "https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/vae/wan_2.1_vae.safetensors",
+          "directory": "vae"
+        }]
       },
       "widgets_values": ["wan_2.1_vae.safetensors"]
     },
     {
       "id": 14,
       "type": "LoraLoader",
-      "title": "WAN LoRA High-Noise Download",
+      "title": "WAN LoRA High Download",
       "properties": {
-        "models": [
-          {
-            "name": "wan2.2_i2v_lightx2v_4steps_lora_v1_high_noise.safetensors",
-            "url": "https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/loras/wan2.2_i2v_lightx2v_4steps_lora_v1_high_noise.safetensors",
-            "directory": "loras"
-          }
-        ]
+        "models": [{
+          "name": "wan2.2_i2v_lightx2v_4steps_lora_v1_high_noise.safetensors",
+          "url": "https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/loras/wan2.2_i2v_lightx2v_4steps_lora_v1_high_noise.safetensors",
+          "directory": "loras"
+        }]
       },
       "widgets_values": ["wan2.2_i2v_lightx2v_4steps_lora_v1_high_noise.safetensors", 1, 1]
     },
     {
       "id": 15,
       "type": "LoraLoader",
-      "title": "WAN LoRA Low-Noise Download",
+      "title": "WAN LoRA Low Download",
       "properties": {
-        "models": [
-          {
-            "name": "wan2.2_i2v_lightx2v_4steps_lora_v1_low_noise.safetensors",
-            "url": "https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/loras/wan2.2_i2v_lightx2v_4steps_lora_v1_low_noise.safetensors",
-            "directory": "loras"
-          }
-        ]
+        "models": [{
+          "name": "wan2.2_i2v_lightx2v_4steps_lora_v1_low_noise.safetensors",
+          "url": "https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/loras/wan2.2_i2v_lightx2v_4steps_lora_v1_low_noise.safetensors",
+          "directory": "loras"
+        }]
       },
       "widgets_values": ["wan2.2_i2v_lightx2v_4steps_lora_v1_low_noise.safetensors", 1, 1]
     }
