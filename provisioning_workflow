@@ -1,0 +1,115 @@
+{
+  "id": "provisioning-flux-wan-combined",
+  "nodes": [
+    {
+      "id": 1,
+      "type": "UNETLoader",
+      "title": "FLUX Model Setup",
+      "properties": {
+        "models": [
+          {
+            "name": "flux1-dev-fp8.safetensors",
+            "url": "https://huggingface.co/Kijai/flux-fp8/resolve/main/flux1-dev-fp8.safetensors",
+            "directory": "unet"
+          }
+        ]
+      },
+      "widgets_values": ["flux1-dev-fp8.safetensors", "fp8_e4m3fn"]
+    },
+    {
+      "id": 2,
+      "type": "DualCLIPLoader",
+      "title": "FLUX CLIP Setup",
+      "properties": {
+        "models": [
+          {
+            "name": "t5xxl_fp8_e4m3fn.safetensors",
+            "url": "https://huggingface.co/comfyanonymous/flux_text_encoders/resolve/main/t5xxl_fp8_e4m3fn.safetensors",
+            "directory": "clip"
+          },
+          {
+            "name": "clip_l.safetensors",
+            "url": "https://huggingface.co/comfyanonymous/flux_text_encoders/resolve/main/clip_l.safetensors",
+            "directory": "clip"
+          }
+        ]
+      },
+      "widgets_values": ["t5xxl_fp8_e4m3fn.safetensors", "clip_l.safetensors", "flux", "default"]
+    },
+    {
+      "id": 3,
+      "type": "VAELoader",
+      "title": "FLUX VAE Setup",
+      "properties": {
+        "models": [
+          {
+            "name": "ae.safetensors",
+            "url": "https://huggingface.co/black-forest-labs/FLUX.1-schnell/resolve/main/ae.safetensors",
+            "directory": "vae"
+          }
+        ]
+      },
+      "widgets_values": ["ae.safetensors"]
+    },
+    {
+      "id": 10,
+      "type": "UNETLoader",
+      "title": "WAN 2.2 I2V Model Setup",
+      "properties": {
+        "models": [
+          {
+            "name": "wan2.2_i2v_480p_14B_fp8_scaled.safetensors",
+            "url": "https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/diffusion_models/wan2.2_i2v_480p_14B_fp8_scaled.safetensors",
+            "directory": "unet"
+          }
+        ]
+      },
+      "widgets_values": ["wan2.2_i2v_480p_14B_fp8_scaled.safetensors", "default"]
+    },
+    {
+      "id": 11,
+      "type": "UNETLoader",
+      "title": "WAN 2.2 T2V High-Noise Setup",
+      "properties": {
+        "models": [
+          {
+            "name": "wan2.2_t2v_high_noise_14B_fp8_scaled.safetensors",
+            "url": "https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/diffusion_models/wan2.2_t2v_high_noise_14B_fp8_scaled.safetensors",
+            "directory": "unet"
+          }
+        ]
+      },
+      "widgets_values": ["wan2.2_t2v_high_noise_14B_fp8_scaled.safetensors", "default"]
+    },
+    {
+      "id": 12,
+      "type": "CLIPLoader",
+      "title": "WAN CLIP Setup",
+      "properties": {
+        "models": [
+          {
+            "name": "umt5_xxl_fp8_e4m3fn_scaled.safetensors",
+            "url": "https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/text_encoders/umt5_xxl_fp8_e4m3fn_scaled.safetensors",
+            "directory": "clip"
+          }
+        ]
+      },
+      "widgets_values": ["umt5_xxl_fp8_e4m3fn_scaled.safetensors", "wan", "default"]
+    },
+    {
+      "id": 13,
+      "type": "VAELoader",
+      "title": "WAN VAE Setup",
+      "properties": {
+        "models": [
+          {
+            "name": "wan_2.1_vae.safetensors",
+            "url": "https://huggingface.co/Comfy-Org/Wan_2.1_ComfyUI_repackaged/resolve/main/split_files/vae/wan_2.1_vae.safetensors",
+            "directory": "vae"
+          }
+        ]
+      },
+      "widgets_values": ["wan_2.1_vae.safetensors"]
+    }
+  ]
+}
